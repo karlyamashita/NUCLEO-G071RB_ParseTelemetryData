@@ -66,6 +66,10 @@ void PollingInit(void)
 {
 	UART_DMA_EnableRxInterruptIdle(&uart2_msg);
 
+	HAL_Delay(1);
+	RingBuff_Ptr_Reset_V(&uart2_msg.dma.circularPtr);
+	RingBuff_Ptr_Reset_V(&uart2_msg.dma.dmaPtr);
+
 	TimerCallbackRegisterOnly(&timerCallback, LED_Toggle);
 }
 
@@ -78,7 +82,7 @@ void PollingRoutine(void)
 
 void UART_ParseCommands(UART_DMA_Struct_t *msg)
 {
-	if(UART_DMA_RxMsgRdy(msg))
+	while(UART_DMA_RxMsgRdy(msg))
 	{
 		// echo back packet or string
 		if(msg->uartType == UART_BINARY)
