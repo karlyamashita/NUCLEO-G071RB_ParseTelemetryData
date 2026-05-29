@@ -105,7 +105,6 @@ void UART_DMA_ParseCircularBuffer(UART_DMA_Struct_t *msg)
 						msg->dma.tempBuffer[i] = msg->dma.tempBuffer[i+1];
 					}
 					msg->dma.tempBufferBytePtr -= 1;
-					return;
 				}
 			}
 		}
