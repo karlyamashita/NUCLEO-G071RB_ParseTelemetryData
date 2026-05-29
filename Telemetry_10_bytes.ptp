@@ -1,0 +1,96 @@
+VERSION
+9
+
+COMMSETTINGS
+0
+COM6
+COM2
+115200
+2
+63
+4
+0
+0
+
+COMMDISPLAY
+0
+
+VERSATAP
+0
+
+CHANNELALIAS
+
+
+
+SEND
+0
+**** Binary Test ****
+
+0
+5
+CHECKSUM 
+
+SEND
+1
+data1
+10 00 80 10 41 25 00 00 12 00
+0
+1
+CHECKSUM MOD256 # simple one byte sum on all but the last character
+
+SEND
+2
+data2
+01 00 81 30 41 44 00 00 55 00
+0
+2
+CHECKSUM MOD256 # simple one byte sum on all but the last character
+
+SEND
+3
+data3
+11 22 33 44 55 66 77 88 99 00
+0
+.01
+CHECKSUM MOD256 # simple one byte sum on all but the last character
+
+SEND
+4
+data4 (bad checksum)
+01 00 81 30 41 44 00 00 55 00
+0
+.01
+CHECKSUM 
+
+SEND
+5
+data5 (extra data)
+01 00 81 30 41 44 00 00 AB 55 00 18
+0
+1
+CHECKSUM 
+
+SEND
+6
+data6 (missing data)
+01 00 81 30 41 00
+0
+.01
+CHECKSUM 
+
+SEND
+7
+**** ASCII Test ****
+
+0
+5
+CHECKSUM 
+
+SEND
+8
+Hello World
+48 65 6C 6C 6F 20 57 6F 72 6C 64 0D 0A
+0
+5
+CHECKSUM 
+
