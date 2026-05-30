@@ -66,10 +66,6 @@ void PollingInit(void)
 {
 	UART_DMA_EnableRxInterruptIdle(&uart2_msg);
 
-	HAL_Delay(1);
-	RingBuff_Ptr_Reset_V(&uart2_msg.dma.circularPtr);
-	RingBuff_Ptr_Reset_V(&uart2_msg.dma.dmaPtr);
-
 	TimerCallbackRegisterOnly(&timerCallback, LED_Toggle);
 }
 
